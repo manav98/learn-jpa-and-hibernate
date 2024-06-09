@@ -13,18 +13,18 @@ public class CourseJdbcRepository {
     private JdbcTemplate springJdbcTemplate;
 
     private static String INSERT_QUERY = """
-            insert into course (id, name, author)
-            values (?,?,?)
+                insert into course (id, name, author)
+                values (?,?,?)
             """;
 
     private static String DELETE_QUERY = """
-            delete from course 
-            where id =  ? """;
-
+                delete from course 
+                where id =  ? 
+            """;
 
     private static String SELECT_QUERY = """
-            select * from 
-            course where id = ?
+                select * from 
+                course where id = ?
             """;
 
     public void insert(Course course) {
@@ -38,6 +38,5 @@ public class CourseJdbcRepository {
     public Course findById(long id) {
         return springJdbcTemplate.queryForObject(SELECT_QUERY, new BeanPropertyRowMapper<>(Course.class), id);
     }
-
 
 }
